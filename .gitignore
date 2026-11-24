@@ -1,0 +1,18 @@
+# AI agents (ClaudeKit, Codex, Gemini CLI, ...)
+.agents/
+# Ignore .claude contents; whitelist individual tracked skills below with !.claude/skills/<name>/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+# ClaudeKit install manifest
+release-manifest.json
+plans/
+docs/mockups
+repomix-output.xml
+.mcp.json
+# Gemini CLI settings (contains user-specific config)
+.gemini/
+.scratch/
+.codex/
+# Skill scratch output
+*.tmp.txt

@@ -1,0 +1,8 @@
+title: App Store release checklist
+description: A checklist for a first App Store (iOS) release, in Vietnamese and English.
+lang: vi
+# Repo-only files, not pages of the site
+exclude:
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
