@@ -19,6 +19,9 @@ A public, shareable checklist for a first App Store (iOS) release, published wit
   and items. These two pages are the one place where content is written in Vietnamese.
 - Keep the checklist generic: no app, company, project or person names, no ids, keys, prices or dates.
 - `README.md`, `AGENTS.md` and `CLAUDE.md` are excluded from the site in `_config.yml`.
+- `_layouts/default.html` wraps both pages: toolbar (download the page's `.md` from the raw file, theme
+  switch that follows the system until the reader picks one), footer credit and copyright (`author` and
+  `copyright_year` in `_config.yml`). Styles in `assets/css/site.css`, scripts in `assets/js/site.js`.
 - No build step: pushing `main` publishes the site.
 
 ## Git Workflow
