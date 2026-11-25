@@ -10,3 +10,9 @@ Read it on the site: https://tranleo148.github.io/app-store-release-checklist/
   https://tranleo148.github.io/app-store-release-checklist/changelog.html
 
 Suggestions and fixes are welcome as issues or pull requests.
+
+## License
+
+- The checklist content is licensed under [CC BY 4.0](LICENSE): share and adapt it freely, also inside
+  your company, as long as you credit Leo Tran and link to the license.
+- The site code (`_layouts/`, `_includes/`, `assets/`) is licensed under the [MIT License](LICENSE-CODE).

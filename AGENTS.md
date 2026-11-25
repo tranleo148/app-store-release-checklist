@@ -18,10 +18,13 @@ A public, shareable checklist for a first App Store (iOS) release, published wit
 - `index.md` is the Vietnamese page (site home), `en.md` the English one; keep both in step, same sections
   and items. These two pages are the one place where content is written in Vietnamese.
 - Keep the checklist generic: no app, company, project or person names, no ids, keys, prices or dates.
-- `README.md`, `AGENTS.md` and `CLAUDE.md` are excluded from the site in `_config.yml`.
-- `_layouts/default.html` wraps both pages: toolbar (download the page's `.md` from the raw file, theme
-  switch that follows the system until the reader picks one), footer credit and copyright (`author` and
-  `copyright_year` in `_config.yml`). Styles in `assets/css/site.css`, scripts in `assets/js/site.js`.
+- `README.md`, `AGENTS.md`, `CLAUDE.md` and the license files are excluded from the site in `_config.yml`.
+- Licenses: the checklist content is CC BY 4.0 (`LICENSE`, official text, so GitHub detects it); the site
+  code (layout, includes, CSS, JS) is MIT (`LICENSE-CODE`). Do not edit `LICENSE`.
+- `_layouts/default.html` wraps every page: toolbar (download the page's `.md` from the raw file, a GitHub
+  link styled as a Star button, theme switch that follows the system until the reader picks one), footer
+  (author credit from `author` in `_config.yml`, CC BY 4.0 link, changelog, feedback). Styles in
+  `assets/css/site.css`, scripts in `assets/js/site.js`.
 - UI strings for both languages live in `_includes/i18n.html`; a new English page sets `lang: en` in its
   front matter.
 - No build step: pushing `main` publishes the site.

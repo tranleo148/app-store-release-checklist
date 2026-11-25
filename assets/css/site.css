@@ -100,6 +100,7 @@ a:hover { text-decoration: underline; }
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.btn svg.filled { fill: currentColor; stroke: none; }
 .icon-moon { display: var(--moon); }
 .icon-sun { display: var(--sun); }
 
@@ -194,4 +195,10 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
 
 @media (max-width: 600px) {
   .toolbar, .markdown-body, .site-footer { padding-left: 16px; padding-right: 16px; }
+}
+
+/* Narrow phones: buttons keep their icons only (their names stay in title and aria-label) */
+@media (max-width: 480px) {
+  .actions .btn span { display: none; }
+  .actions .btn { padding: 0 8px; }
 }

@@ -1,11 +1,10 @@
 title: App Store release checklist
 description: A checklist for a first App Store (iOS) release, in Vietnamese and English.
 lang: vi
-# Credit and copyright shown in the footer of every page
+# Author credit shown in the footer of every page (the license is CC BY 4.0, see LICENSE)
 author:
   name: Leo Tran
   url: https://github.com/tranleo148
-copyright_year: 2026
 plugins:
   - jekyll-seo-tag
 # Repo-only files, not pages of the site
@@ -13,3 +12,5 @@ exclude:
   - README.md
   - AGENTS.md
   - CLAUDE.md
+  - LICENSE
+  - LICENSE-CODE
