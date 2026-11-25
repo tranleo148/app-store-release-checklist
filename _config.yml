@@ -1,10 +1,15 @@
-title: App Store release checklist
-description: A checklist for a first App Store (iOS) release, in Vietnamese and English.
+title: Mobile release checklists
+description: Checklists for a first App Store (iOS) and Google Play (Android) release, in Vietnamese and English.
 lang: vi
 # Author credit shown in the footer of every page (the license is CC BY 4.0, see LICENSE)
 author:
   name: Leo Tran
   url: https://github.com/tranleo148
+# One folder per checklist: <slug>/index.md (Vietnamese) and <slug>/en.md (English).
+# Used to find checklist pages (download button, recent-changes box) and to name downloads.
+checklists:
+  - app-store
+  - google-play
 plugins:
   - jekyll-seo-tag
 # Repo-only files, not pages of the site

@@ -1,9 +1,12 @@
 {%- comment -%}
-  Language and UI strings for the current page: English for en.md and pages with lang: en,
+  Language and UI strings for the current page: English for every en.md and pages with lang: en,
   Vietnamese otherwise. Included by the layout and by changelog-list.html (page content is
   rendered before the layout, so the changelog pages need it on their own).
 {%- endcomment -%}
-{%- if page.lang == "en" or page.path == "en.md" -%}
+{%- comment -%} The checklist this page belongs to (its folder), or "" for the home and changelog pages. {%- endcomment -%}
+{%- assign checklist = page.dir | remove: '/' -%}
+{%- unless site.checklists contains checklist -%}{%- assign checklist = "" -%}{%- endunless -%}
+{%- if page.lang == "en" or page.name == "en.md" -%}
   {%- assign lang = "en" -%}
   {%- assign download_label = "Download .md" -%}
   {%- assign theme_label = "Switch light or dark theme" -%}
@@ -15,7 +18,7 @@
   {%- assign latest_label = "Last updated" -%}
   {%- assign all_changes_label = "See all changes" -%}
   {%- assign date_format = "%b %-d, %Y" -%}
-  {%- assign home_url = '/en.html' | relative_url -%}
+  {%- assign home_url = '/en/' | relative_url -%}
   {%- assign changelog_url = '/changelog-en.html' | relative_url -%}
 {%- else -%}
   {%- assign lang = "vi" -%}

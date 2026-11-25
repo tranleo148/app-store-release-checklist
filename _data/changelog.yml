@@ -1,9 +1,11 @@
-# Changes to the checklist content, newest first. Shown in the "recent changes" box on both
-# checklist pages (5 newest) and in full on changelog.html / changelog-en.html.
+# Changes to the checklist content, newest first. Each checklist page shows its 5 newest entries
+# (plus site-wide ones) in the "recent changes" box; changelog.html / changelog-en.html list them all.
 #
 # Fields:
 #   date    YYYY-MM-DD
 #   type    added | changed | fixed | removed
+#   checklist  optional: app-store | google-play (the folder); leave out for site-wide changes,
+#           which show on every checklist page
 #   vi, en  one line each (inline markdown allowed)
 #   anchor  optional: heading id of the changed section on each page, copied from the live page
 #           (e.g. 6-quyền-riêng-tư-và-pháp-lý / 6-privacy-and-legal); update it if the heading is renamed
@@ -11,13 +13,26 @@
 # Example:
 # - date: 2026-12-01
 #   type: added
+#   checklist: app-store
 #   vi: Thêm bước App Compliance khi bán ở Trung Quốc đại lục
 #   en: Add the App Compliance step for China mainland
 #   anchor:
 #     vi: 6-quyền-riêng-tư-và-pháp-lý
 #     en: 6-privacy-and-legal
 
+- date: 2026-11-25
+  type: added
+  checklist: google-play
+  vi: Thêm checklist release Google Play (Android)
+  en: Add the Google Play (Android) release checklist
+
+- date: 2026-11-25
+  type: changed
+  vi: Trang chủ giờ liệt kê các checklist; checklist App Store chuyển sang `/app-store/` (link cũ vẫn chuyển tiếp)
+  en: The home page now lists the checklists; the App Store checklist moved to `/app-store/` (old links still redirect)
+
 - date: 2026-11-24
   type: added
+  checklist: app-store
   vi: Phát hành checklist bản đầu, có tiếng Việt và tiếng Anh
   en: First release of the checklist, in Vietnamese and English

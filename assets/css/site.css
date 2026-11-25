@@ -202,3 +202,5 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
   .actions .btn span { display: none; }
   .actions .btn { padding: 0 8px; }
 }
+
+.changelog .muted { color: var(--muted); }

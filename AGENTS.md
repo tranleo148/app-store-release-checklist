@@ -12,16 +12,22 @@ Guidance for AI coding agents (Claude Code, Codex, Cursor, etc.) working in this
 
 ## Project Overview
 
-A public, shareable checklist for a first App Store (iOS) release, published with GitHub Pages
-(Jekyll, default theme) at https://tranleo148.github.io/app-store-release-checklist/.
+Public, shareable checklists for a first store release of a mobile app, published with GitHub Pages
+(Jekyll) at https://tranleo148.github.io/app-store-release-checklist/. The repo keeps its old name on
+purpose: renaming it would break the Pages URL already shared.
 
-- `index.md` is the Vietnamese page (site home), `en.md` the English one; keep both in step, same sections
-  and items. These two pages are the one place where content is written in Vietnamese.
+- One folder per checklist, listed under `checklists` in `_config.yml`: `app-store/` (iOS) and
+  `google-play/` (Android). In each, `index.md` is Vietnamese and `en.md` English; keep the two in step, same
+  sections and items. The checklists and the home pages are the one place where content is in Vietnamese.
+- Home pages: `index.md` (Vietnamese, the site root) and `en/index.md` (English) link to every checklist; a
+  new checklist gets a line on both, a folder in `checklists`, and a name in `_includes/changelog-list.html`.
+- `en.html` at the root only redirects to `app-store/en.html` (where the English App Store checklist lived
+  before the split); keep it so old links work.
 - Keep the checklist generic: no app, company, project or person names, no ids, keys, prices or dates.
 - `README.md`, `AGENTS.md`, `CLAUDE.md` and the license files are excluded from the site in `_config.yml`.
 - Licenses: the checklist content is CC BY 4.0 (`LICENSE`, official text, so GitHub detects it); the site
   code (layout, includes, CSS, JS) is MIT (`LICENSE-CODE`). Do not edit `LICENSE`.
-- `_layouts/default.html` wraps every page: toolbar (download the page's `.md` from the raw file, a GitHub
+- `_layouts/default.html` wraps every page: toolbar (on checklist pages, download the page's `.md` from the raw file; a GitHub
   link styled as a Star button, theme switch that follows the system until the reader picks one), footer
   (author credit from `author` in `_config.yml`, CC BY 4.0 link, changelog, feedback). Styles in
   `assets/css/site.css`, scripts in `assets/js/site.js`.
@@ -31,11 +37,12 @@ A public, shareable checklist for a first App Store (iOS) release, published wit
 
 ### Changelog
 
-- Every commit that changes the checklist content (`index.md`, `en.md`) adds an entry at the top of
-  `_data/changelog.yml` in the same commit: date, type (`added` / `changed` / `fixed` / `removed`), one line
-  in `vi` and one in `en`, and an optional `anchor` (the changed section's heading id on each page).
+- Every commit that changes a checklist's content adds an entry at the top of `_data/changelog.yml` in the
+  same commit: date, type (`added` / `changed` / `fixed` / `removed`), `checklist` (its folder; leave it out
+  for site-wide changes), one line in `vi` and one in `en`, and an optional `anchor` (the changed section's
+  heading id on each page).
   Changes to the site only (layout, styles, scripts) get no entry.
-- The 5 newest entries show in the recent-changes box under the title of both checklist pages
+- Each checklist page shows its 5 newest entries (plus site-wide ones) in the recent-changes box under its title
   (`_includes/changelog-list.html`, used by `_layouts/default.html`); `changelog.md` / `changelog-en.md`
   list them all.
 - Renaming a section heading changes its id: update the `anchor` values that point at it.
@@ -52,13 +59,13 @@ square brackets. Omit the prefix for shared code or changes spanning several are
 
 | Files touched | Prefix |
 |---------------|--------|
-| Only `index.md` (Vietnamese page) | `[VI] ` |
-| Only `en.md` (English page) | `[EN] ` |
-| Both pages, site config, or repo files | none |
+| Only `app-store/` (and its changelog entry) | `[App Store] ` |
+| Only `google-play/` (and its changelog entry) | `[Google Play] ` |
+| Several checklists, home pages, site code, or repo files | none |
 
 Examples:
 - `Add the App Compliance step for China mainland`
-- `[VI] Fix wording in the in-app purchase section`
+- `[Google Play] Fix wording in the in-app purchase section`
 
 Never add AI attribution or references to AI tools in commit messages.
 
