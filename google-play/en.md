@@ -16,8 +16,9 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 
 - [ ] [Console] Play Console account in good standing; the developer name matches the privacy policy and the
       website.
-- [ ] [Console] New **personal** accounts must run a closed test with at least 12 testers for 14 days in a row
-      before production access opens. Plan for it early: it is the longest wait.
+- [ ] [Console] **Personal** accounts created after November 13, 2023 must run a closed test with at least 12 testers
+      opted in for 14 days in a row before they can apply for production (details under "Traps to watch for"). Plan
+      for it early: it is the longest wait.
 - [ ] [Code] Application id (`<id>`) final: it can never change after release.
 - [ ] [Code] Debug/dev builds install as `<id>.dev` (`applicationIdSuffix`, "App Dev" name), so they sit next to
       the store build on the same phone.
@@ -146,8 +147,13 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - [ ] [Console] `[if]` ads: AdMob finds `app-ads.txt` and is linked to the listing.
 - [ ] Reply to reviews; track the rating.
 
-## Traps we ran into
+## Traps to watch for
 
+- **The 12-tester / 14-day closed test (personal accounts created after November 13, 2023):** production access
+  stays closed until it is done. At least 12 testers must have been opted in for the 14 days right before you
+  apply, so recruit a few extra in case some leave. Then click "Apply for production" on the Dashboard and answer
+  questions about the test, the app and its readiness; Google usually reviews it within about 7 days. Put these
+  three weeks or so in the plan from the start.
 - **Unregistered key (developer verification):** an internal app sharing key created by linking Firebase App
   Distribution made Play reject every release and listing change until it was registered.
 - **Crashes only in the R8 build:** the debug build was fine, the release build crashed on a missing keep rule.

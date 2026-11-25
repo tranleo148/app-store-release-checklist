@@ -15,8 +15,9 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 ## 1. Tài khoản và định danh
 
 - [ ] [Console] Tài khoản Play Console còn hiệu lực; tên developer khớp với privacy policy và website.
-- [ ] [Console] Tài khoản **cá nhân** mới phải chạy closed test với ít nhất 12 tester trong 14 ngày liền trước khi
-      được mở production. Lên kế hoạch sớm, vì đây là bước chờ dài nhất.
+- [ ] [Console] Tài khoản **cá nhân** tạo sau 13/11/2023 phải chạy closed test với ít nhất 12 tester opt-in liên tục
+      14 ngày trước khi xin được production (chi tiết ở mục "Những bẫy cần tránh"). Lên kế hoạch sớm, vì đây là bước
+      chờ dài nhất.
 - [ ] [Code] Chốt application id (`<id>`): sau khi phát hành thì không bao giờ đổi được.
 - [ ] [Code] Bản debug/dev cài dưới `<id>.dev` (`applicationIdSuffix`, tên "App Dev"), để nằm cạnh bản store trên
       cùng một máy.
@@ -144,8 +145,13 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - [ ] [Console] `[if]` có quảng cáo: AdMob đã thấy `app-ads.txt` và link với listing.
 - [ ] Trả lời review; theo dõi rating.
 
-## Những bẫy chúng tôi từng gặp
+## Những bẫy cần tránh
 
+- **Closed test 12 tester / 14 ngày (tài khoản cá nhân tạo sau 13/11/2023):** chưa qua bước này thì không xin
+  được quyền production. Cần ít nhất 12 tester đã opt-in liên tục trong 14 ngày ngay trước khi gửi yêu cầu, nên
+  tuyển dư vài người phòng có người rời. Sau đó bấm "Apply for production" trên Dashboard và trả lời câu hỏi về
+  đợt test, về app và mức sẵn sàng; Google thường duyệt trong khoảng 7 ngày. Tính khoảng ba tuần này vào kế hoạch
+  ngay từ đầu.
 - **Key chưa đăng ký (developer verification):** một key internal app sharing sinh ra khi liên kết Firebase App
   Distribution làm Play từ chối mọi release và thay đổi listing cho đến khi được đăng ký.
 - **Crash chỉ có ở bản R8:** bản debug chạy bình thường, bản release crash vì thiếu keep rule. Luôn test đúng bản
