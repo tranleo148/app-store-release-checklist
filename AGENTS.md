@@ -24,6 +24,17 @@ A public, shareable checklist for a first App Store (iOS) release, published wit
   `copyright_year` in `_config.yml`). Styles in `assets/css/site.css`, scripts in `assets/js/site.js`.
 - No build step: pushing `main` publishes the site.
 
+### Changelog
+
+- Every commit that changes the checklist content (`index.md`, `en.md`) adds an entry at the top of
+  `_data/changelog.yml` in the same commit: date, type (`added` / `changed` / `fixed` / `removed`), one line
+  in `vi` and one in `en`, and an optional `anchor` (the changed section's heading id on each page).
+  Changes to the site only (layout, styles, scripts) get no entry.
+- The 5 newest entries show in the recent-changes box under the title of both checklist pages
+  (`_includes/changelog-list.html`, used by `_layouts/default.html`); `changelog.md` / `changelog-en.md`
+  list them all.
+- Renaming a section heading changes its id: update the `anchor` values that point at it.
+
 ## Git Workflow
 
 ### Commit Style

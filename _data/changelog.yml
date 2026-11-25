@@ -1,0 +1,23 @@
+# Changes to the checklist content, newest first. Shown in the "recent changes" box on both
+# checklist pages (5 newest) and in full on changelog.html / changelog-en.html.
+#
+# Fields:
+#   date    YYYY-MM-DD
+#   type    added | changed | fixed | removed
+#   vi, en  one line each (inline markdown allowed)
+#   anchor  optional: heading id of the changed section on each page, copied from the live page
+#           (e.g. 6-quyền-riêng-tư-và-pháp-lý / 6-privacy-and-legal); update it if the heading is renamed
+#
+# Example:
+# - date: 2026-12-01
+#   type: added
+#   vi: Thêm bước App Compliance khi bán ở Trung Quốc đại lục
+#   en: Add the App Compliance step for China mainland
+#   anchor:
+#     vi: 6-quyền-riêng-tư-và-pháp-lý
+#     en: 6-privacy-and-legal
+
+- date: 2026-11-24
+  type: added
+  vi: Phát hành checklist bản đầu, có tiếng Việt và tiếng Anh
+  en: First release of the checklist, in Vietnamese and English

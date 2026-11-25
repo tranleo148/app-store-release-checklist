@@ -9,6 +9,9 @@
   --link: #0969da;
   --code-bg: #f6f8fa;
   --hover: #eff2f5;
+  --green: #1a7f37;
+  --amber: #9a6700;
+  --red: #d1242f;
   --moon: block;
   --sun: none;
 }
@@ -23,6 +26,9 @@
     --link: #4493f8;
     --code-bg: #151b23;
     --hover: #212830;
+    --green: #3fb950;
+    --amber: #d29922;
+    --red: #f85149;
     --moon: none;
     --sun: block;
   }
@@ -37,6 +43,9 @@
   --link: #4493f8;
   --code-bg: #151b23;
   --hover: #212830;
+  --green: #3fb950;
+  --amber: #d29922;
+  --red: #f85149;
   --moon: none;
   --sun: block;
 }
@@ -116,6 +125,59 @@ ul.task-list { padding-left: 1.6em; }
 ul.task-list > li.task-list-item { list-style: none; }
 .task-list-item-checkbox { margin: 0 0.5em 0.2em 0; vertical-align: middle; }
 ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6em; }
+
+/* Changelog: the recent-changes box on checklist pages and the full list on the changelog pages */
+.recent-changes {
+  margin: 0 0 20px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+}
+.recent-changes summary { cursor: pointer; }
+.recent-changes summary svg,
+.recent-changes summary .muted { color: var(--muted); }
+.recent-changes summary svg {
+  width: 15px;
+  height: 15px;
+  margin: 0 2px 0 4px;
+  vertical-align: -2px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.recent-changes[open] summary { margin-bottom: 8px; }
+.recent-changes .changelog { margin: 0 0 8px; }
+.all-changes { display: inline-block; margin: 0 0 2px; }
+
+.changelog { list-style: none; padding-left: 0; }
+.changelog li {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  gap: 4px 10px;
+  align-items: baseline;
+}
+.changelog li + li { margin-top: 6px; }
+.changelog time { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tag {
+  padding: 0 8px;
+  border: 1px solid currentColor;
+  border-radius: 2em;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.tag-added { color: var(--green); }
+.tag-changed { color: var(--link); }
+.tag-fixed { color: var(--amber); }
+.tag-removed { color: var(--red); }
+
+@media (max-width: 600px) {
+  .changelog li { grid-template-columns: auto minmax(0, 1fr); }
+  .changelog .change { grid-column: 1 / -1; }
+}
 
 /* Footer: credit and copyright */
 .site-footer {

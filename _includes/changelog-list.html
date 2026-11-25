@@ -1,0 +1,31 @@
+{%- comment -%}
+  Changelog entries from _data/changelog.yml, newest first.
+  Params: limit (optional) = how many entries to show.
+  Uses lang, date_format and home_url assigned by the layout.
+{%- endcomment -%}
+{%- assign entries = site.data.changelog -%}
+{%- if include.limit -%}
+  {%- assign entries = entries | slice: 0, include.limit -%}
+{%- endif -%}
+<ul class="changelog">
+  {%- for entry in entries -%}
+    {%- case entry.type -%}
+      {%- when "added" -%}{%- if lang == "en" -%}{%- assign type_label = "Added" -%}{%- else -%}{%- assign type_label = "Thêm" -%}{%- endif -%}
+      {%- when "changed" -%}{%- if lang == "en" -%}{%- assign type_label = "Changed" -%}{%- else -%}{%- assign type_label = "Sửa" -%}{%- endif -%}
+      {%- when "fixed" -%}{%- if lang == "en" -%}{%- assign type_label = "Fixed" -%}{%- else -%}{%- assign type_label = "Sửa lỗi" -%}{%- endif -%}
+      {%- when "removed" -%}{%- if lang == "en" -%}{%- assign type_label = "Removed" -%}{%- else -%}{%- assign type_label = "Bỏ" -%}{%- endif -%}
+      {%- else -%}{%- assign type_label = entry.type -%}
+    {%- endcase -%}
+    {%- assign text = entry[lang] | default: entry.en -%}
+    <li>
+      <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">{{ entry.date | date: date_format }}</time>
+      <span class="tag tag-{{ entry.type }}">{{ type_label }}</span>
+      <span class="change">
+        {{- text | markdownify | remove: '<p>' | remove: '</p>' | strip -}}
+        {%- if entry.anchor and entry.anchor[lang] %}
+          <a href="{{ home_url }}#{{ entry.anchor[lang] }}">§{{ entry.anchor[lang] | split: '-' | first }}</a>
+        {%- endif -%}
+      </span>
+    </li>
+  {%- endfor -%}
+</ul>
