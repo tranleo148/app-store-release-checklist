@@ -227,6 +227,7 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
   font-size: 12px;
   line-height: 1.6;
   white-space: nowrap;
+  justify-self: start; /* keep its own width when the phone layout puts it in the wide column */
 }
 .tag-added { color: var(--green); }
 .tag-changed { color: var(--link); }
