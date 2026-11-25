@@ -22,6 +22,15 @@
 
 - date: 2026-11-25
   type: added
+  checklist: app-store
+  vi: Thêm mục CallKit khi app bán ở Trung Quốc đại lục (bị từ chối theo guideline 5) vào phần pháp lý và các bẫy cần tránh
+  en: Add the CallKit item for apps on sale in China mainland (rejected under guideline 5) to the legal section and the traps
+  anchor:
+    vi: 6-quyền-riêng-tư-và-pháp-lý
+    en: 6-privacy-and-legal
+
+- date: 2026-11-25
+  type: added
   checklist: google-play
   vi: Thêm checklist release Google Play (Android)
   en: Add the Google Play (Android) release checklist

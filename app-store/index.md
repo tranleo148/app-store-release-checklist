@@ -112,6 +112,12 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - [ ] [Console] Trang **App Compliance**: nếu app bán ở Trung Quốc đại lục, các mục như "Security Assessment"
       và "AI Generated or Synthetic Content" sẽ báo "Missing Info". Khai báo chúng, hoặc bỏ Trung Quốc đại lục
       khỏi vùng bán.
+- [ ] [Console] `[if]` có CallKit (gọi VoIP, màn hình cuộc gọi của hệ thống; thường do SDK gọi thoại / video
+      kéo vào): cơ quan quản lý của Trung Quốc đại lục (MIIT) yêu cầu tắt CallKit trong mọi app trên App Store
+      Trung Quốc, nên app có CallKit mà vẫn bán ở Trung Quốc đại lục sẽ bị từ chối (guideline 5). Bỏ Trung Quốc
+      đại lục trong Pricing and Availability, hoặc tắt CallKit với người dùng ở Trung Quốc, kể cả VoIP push (iOS
+      bắt mỗi VoIP push phải báo một cuộc gọi qua CallKit). Kiểm tra binary có link CallKit không:
+      `otool -L <App>.app/<App> | grep CallKit`.
 - [ ] `[if]` có tài khoản: cho xoá tài khoản ngay trong app; có Sign in with Apple nếu có đăng nhập bằng bên
       thứ ba khác.
 - [ ] Dòng miễn trừ trách nhiệm về IP của bên thứ ba trong app (màn About) và ở cuối mô tả trên store.
@@ -158,7 +164,7 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - [ ] [Console] `[if]` có quảng cáo: AdMob tìm thấy `app-ads.txt` trên website developer ghi trong trang App Store.
 - [ ] Theo dõi crash, analytics và review trong những ngày đầu.
 
-## Những bẫy bị từ chối mà chúng tôi đã chuẩn bị trước
+## Những bẫy bị từ chối cần tránh
 
 - **IP của bên thứ ba (guideline 5.2.1):** asset có bản quyền không có trong app iOS, dòng miễn trừ trong mô
   tả và trong app, không dùng thương hiệu trong tên/keyword, screenshot không có hình ảnh có bản quyền, câu trả
@@ -169,3 +175,6 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
   review screenshot của IAP, các mục compliance cho Trung Quốc đại lục.
 - **Thông tin privacy không khớp:** App Privacy label, `PrivacyInfo.xcprivacy` và privacy policy phải nói cùng
   một điều.
+- **CallKit ở Trung Quốc (guideline 5):** app có CallKit mà đang bán ở Trung Quốc đại lục sẽ bị từ chối. Bỏ
+  Trung Quốc đại lục khỏi vùng bán hoặc tắt CallKit ở đó (mục 6); nếu đã tắt rồi thì trả lời tin nhắn review
+  trong App Store Connect để xác nhận. Gọi VoIP vẫn được phép, chỉ không dùng màn hình cuộc gọi của CallKit.

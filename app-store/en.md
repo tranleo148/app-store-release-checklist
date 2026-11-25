@@ -114,6 +114,12 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - [ ] [Console] **App Compliance** page: if the app is on sale in China mainland, items such as "Security
       Assessment" and "AI Generated or Synthetic Content" show "Missing Info". File them or remove China
       mainland from availability.
+- [ ] [Console] `[if]` CallKit (VoIP calls, the system call screen; often pulled in by a calling or video SDK):
+      China mainland's regulator (MIIT) asked for CallKit to be off in every app on the China App Store, so
+      review rejects an app that has it while China mainland is in its availability (guideline 5). Remove China
+      mainland in Pricing and Availability, or turn CallKit off for users in China, VoIP pushes included (iOS
+      requires every VoIP push to report a call to CallKit). To see whether the binary links it:
+      `otool -L <App>.app/<App> | grep CallKit`.
 - [ ] `[if]` accounts: in-app account deletion; Sign in with Apple when other third-party sign-ins exist.
 - [ ] Third-party IP disclaimer in the app (About) and at the end of the store description.
 
@@ -158,7 +164,7 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - [ ] [Console] `[if]` ads: AdMob finds `app-ads.txt` on the developer website named in the App Store listing.
 - [ ] Watch crashes, analytics and reviews for the first days.
 
-## Rejection traps we prepared for
+## Rejection traps to watch for
 
 - **Third-party IP (guideline 5.2.1):** protected assets kept out of the iOS app entirely, disclaimer in the
   description and in the app, no trademarks in name/keywords, screenshots without the protected art, a reply
@@ -168,3 +174,7 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - **Blockers that only show at "Add for Review":** Pricing and Availability, Content Rights, IAP availability,
   IAP review screenshots, China mainland compliance items.
 - **Privacy mismatch:** App Privacy label, `PrivacyInfo.xcprivacy` and the privacy policy say the same thing.
+- **CallKit in China (guideline 5):** an app with CallKit that is on sale in China mainland is rejected. Remove
+  China mainland from availability or turn CallKit off there (section 6); if it is already off in China, reply
+  to the review message in App Store Connect to confirm. VoIP calls stay allowed, only without CallKit's call
+  screen.
