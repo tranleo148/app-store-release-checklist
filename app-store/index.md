@@ -61,6 +61,13 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
       Android không bao giờ hiện trên iOS.
 - [ ] Trước mỗi lần upload, kiểm tra file archive không chứa file nào bị loại, ví dụ
       `find build/App.xcarchive/Products/Applications/*.app -path '*<thu-muc-bi-loai>/*' | wc -l` in ra `0`.
+- [ ] Với app đa nền tảng: app iOS, screenshot và metadata không có tên, badge hay hình máy của Android, Google
+      Play hay nền tảng khác (guideline 2.3.10). Code chung có chữ "Android" hoặc link tới Google Play (nội dung
+      chia sẻ, "Đánh giá app", nhắc cập nhật) phải có bản riêng cho iOS.
+- [ ] App làm được nhiều hơn việc hiển thị một website, và không gần như trùng với một app khác trên store, kể cả
+      app của chính bạn (guideline 4.2 và 4.3).
+- [ ] App và metadata không có chữ beta, test, demo hay "sắp ra mắt"; không có nội dung giữ chỗ (placeholder) hay
+      nút bấm không làm gì (guideline 2.1 và 2.2).
 
 ## 4. Test
 
@@ -75,6 +82,9 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
   - `[if]` có rewarded ad: phần thưởng được trao;
   - event analytics hiện trong DebugView;
   - một crash cố ý hiện trên console crash với stack trace đã symbolicate.
+- [ ] [Mac] Chạy thêm trên iPad và trên một iPhone cũ, màn nhỏ (ví dụ iPhone SE): App Review test trên những máy
+      này, và app chỉ dành cho iPhone vẫn chạy trên iPad (guideline 2.4.1). Không crash, không vỡ layout, không có
+      nút bấm không làm gì; crash và lỗi bị phát hiện lúc review là lý do bị từ chối hay gặp nhất (guideline 2.1).
 - [ ] App Android vẫn pass hết (host test, build, device test) sau khi sửa code chung.
 
 ## 5. In-app purchase `[if]`
@@ -90,6 +100,10 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - [ ] [Console] Các remote flag điều khiển việc bán: giá trị iOS là `true` khi nộp (reviewer phải mua được).
 - [ ] [Mac] TestFlight + sandbox tester: mua, thanh toán chờ duyệt (Ask to Buy), Restore Purchase sau khi cài
       lại, và tác dụng của gói mua (ví dụ hết quảng cáo).
+- [ ] Có nút **Restore Purchases** nhìn thấy được cho sản phẩm non-consumable và subscription (guideline 3.1.1).
+- [ ] `[if]` có subscription: trước khi mua, màn hình ghi rõ giá, chu kỳ thanh toán và người dùng nhận được gì,
+      kèm link Terms of Use (EULA) và privacy policy mở được. App Store Connect cũng cần link Terms of Use, trong
+      phần mô tả hoặc ô EULA (guideline 3.1.2).
 - [ ] Phần mô tả nói rõ tính năng nào cần trả tiền hoặc xem quảng cáo (guideline 2.3.2).
 - [ ] Nếu hai sản phẩm bán cùng một thứ (ví dụ giá ra mắt và giá thường) nhưng mỗi lúc chỉ hiện một, ghi rõ
       trong review notes: reviewer có thể đi tìm cả hai.
@@ -118,8 +132,33 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
       đại lục trong Pricing and Availability, hoặc tắt CallKit với người dùng ở Trung Quốc, kể cả VoIP push (iOS
       bắt mỗi VoIP push phải báo một cuộc gọi qua CallKit). Kiểm tra binary có link CallKit không:
       `otool -L <App>.app/<App> | grep CallKit`.
-- [ ] `[if]` có tài khoản: cho xoá tài khoản ngay trong app; có Sign in with Apple nếu có đăng nhập bằng bên
-      thứ ba khác.
+- [ ] Link privacy policy có trong app (ví dụ màn Settings hoặc About), không chỉ trên App Store Connect
+      (guideline 5.1.1(i)).
+- [ ] Mỗi câu giải thích quyền (`NS...UsageDescription`) nói app dùng quyền đó để làm gì, kèm ví dụ, bằng mọi ngôn
+      ngữ app hỗ trợ; câu kiểu "App cần quyền truy cập camera" sẽ bị từ chối. Chỉ hỏi quyền khi người dùng dùng
+      đến tính năng cần nó (guideline 5.1.1(ii)).
+- [ ] `[if]` có quảng cáo / tracking: khi App Privacy label khai có tracking, reviewer phải thấy hộp thoại ATT;
+      ghi trong Review Notes lúc nào nó hiện (ví dụ sau form consent ở lần mở đầu). Không có màn hình nào trước
+      nó bắt chước hộp thoại hệ thống hay thưởng cho việc đồng ý (guideline 5.1.2).
+- [ ] `[if]` có đăng nhập: tính năng không cần tài khoản thì dùng được mà không phải đăng nhập (guideline 5.1.1(v)).
+- [ ] `[if]` đăng nhập bằng Google, Facebook, X hay dịch vụ bên thứ ba / mạng xã hội khác cho tài khoản chính:
+      phải có thêm một cách đăng nhập ngang hàng chỉ lấy tên và email, cho người dùng giấu email và không theo dõi
+      họ để quảng cáo khi chưa đồng ý (guideline 4.8). Sign in with Apple đáp ứng cả ba. Không cần khi app chỉ
+      dùng tài khoản riêng của mình, tài khoản có sẵn của trường học hay công ty, định danh điện tử của chính
+      phủ, hoặc app là client của một dịch vụ bên thứ ba cụ thể (mail, mạng xã hội).
+- [ ] `[if]` có tài khoản: xoá tài khoản (guideline 5.1.1(v)):
+  - bắt đầu được ngay trong app và dễ tìm (ví dụ Settings → Tài khoản → Xoá tài khoản); nếu bước cuối làm trên
+    website thì link thẳng tới trang đó;
+  - xoá tài khoản và dữ liệu cá nhân đi kèm; chỉ vô hiệu hoá hay tạm khoá là không đủ;
+  - không bắt gửi email, gọi điện hay chat với bộ phận hỗ trợ để xoá (chỉ app trong ngành bị quản lý chặt như
+    ngân hàng mới được); bước xác nhận hay đăng nhập lại thì được;
+  - có Sign in with Apple thì thu hồi token của người dùng qua REST API của Sign in with Apple;
+  - có subscription thì báo người dùng rằng Apple vẫn tiếp tục thu tiền cho đến khi họ huỷ, và link tới
+    Manage Subscriptions;
+  - tài khoản khách cũng phải xoá được; nói rõ việc xoá mất bao lâu và dữ liệu nào được giữ lại (chỉ những gì
+    luật bắt buộc).
+- [ ] `[if]` có nội dung do người dùng tạo (bài đăng, chat, hồ sơ, file tải lên): có cách báo cáo nội dung, chặn
+      người dùng, lọc nội dung xấu, và thông tin liên hệ trong app (guideline 1.2).
 - [ ] Dòng miễn trừ trách nhiệm về IP của bên thứ ba trong app (màn About) và ở cuối mô tả trên store.
 
 ## 7. Trang store
@@ -129,13 +168,18 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - [ ] [Console] Mô tả và promotional text; thêm dòng "không chính thức / không liên kết với..." khi app nói
       về IP của người khác.
 - [ ] [Console] Screenshot của **giao diện thật đúng như bản iOS** cho mọi size App Store Connect yêu cầu
-      (xem "View All Sizes in Media Manager": nhiều size iPhone và slot iPad nếu app chạy trên iPad). Bỏ các
-      ảnh mà phần lớn là hình ảnh của bên thứ ba.
+      (xem "View All Sizes in Media Manager": nhiều size iPhone và slot iPad nếu app chạy trên iPad). Ảnh phải
+      cho thấy app đang được dùng, không chỉ màn splash hay màn đăng nhập (guideline 2.3.3). Bỏ các ảnh mà phần
+      lớn là hình ảnh của bên thứ ba.
 - [ ] [Console] Support URL, marketing URL (website của bạn: sau này cần cho `app-ads.txt`), privacy policy URL.
 - [ ] [Console] **Pricing and Availability** cho chính app (giá, kể cả Free, và vùng bán). Đây là một trang
       riêng trong mục Distribution, không nằm trong trang version, rất dễ quên.
 - [ ] [Console] Review Notes: app làm gì, không cần đăng nhập (hoặc cho tài khoản demo), những gì reviewer có
       thể thắc mắc; thông tin liên hệ cho App Review. Chuẩn bị sẵn câu trả lời cho lý do từ chối dễ gặp nhất.
+- [ ] [Console] `[if]` có đăng nhập: tài khoản demo đăng nhập được trên bản nộp review và không hết hạn, backend
+      luôn bật trong lúc review, và notes chỉ chỗ xoá tài khoản, chỗ mua hàng và những gì khó tìm. Một video quay
+      màn hình ngắn giúp ích cho những flow reviewer không tự đi tới được, như cần phần cứng hay một địa điểm
+      (guideline 2.1).
 
 ## 8. Build, upload và nộp
 
@@ -166,6 +210,16 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 
 ## Những bẫy bị từ chối cần tránh
 
+- **App chưa hoàn thiện (guideline 2.1), hay gặp nhất:** crash, nút không làm gì hay vỡ layout trên máy reviewer
+  dùng (iPad, iPhone cũ), backend bị tắt, tài khoản demo không đăng nhập được.
+- **Đăng nhập và tài khoản (4.8, 5.1.1(v)):** có đăng nhập mạng xã hội mà không có lựa chọn bảo vệ quyền riêng tư
+  đi kèm (Sign in with Apple), bắt đăng nhập cho tính năng không cần tài khoản, không xoá được tài khoản trong app,
+  hoặc "xoá" mà chỉ vô hiệu hoá hay bắt gửi email.
+- **Nhắc nền tảng khác trong app iOS (2.3.10):** chữ "Android", badge hay link Google Play còn sót trong code
+  chung, screenshot hoặc mô tả.
+- **Quyền và ATT (5.1.1, 5.1.2):** câu giải thích quyền chung chung, khai có tracking mà reviewer không thấy hộp
+  thoại ATT.
+- **Subscription (3.1.2):** màn hình mua thiếu giá, chu kỳ, link Terms of Use hay privacy policy.
 - **IP của bên thứ ba (guideline 5.2.1):** asset có bản quyền không có trong app iOS, dòng miễn trừ trong mô
   tả và trong app, không dùng thương hiệu trong tên/keyword, screenshot không có hình ảnh có bản quyền, câu trả
   lời soạn sẵn cho reviewer.

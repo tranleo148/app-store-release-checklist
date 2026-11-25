@@ -25,6 +25,15 @@
 - date: 2026-11-25
   type: added
   platforms: [app-store]
+  vi: Thêm các lý do bị từ chối hay gặp, xoá tài khoản chi tiết, đăng nhập theo guideline 4.8 hiện tại (Sign in with Apple hoặc cách tương đương), quyền, ATT, subscription, iPad, nhắc tên nền tảng khác
+  en: Add the most common rejection reasons, account deletion in detail, sign-in under the current guideline 4.8 (Sign in with Apple or an equal option), permissions, ATT, subscriptions, iPad, mentions of other platforms
+  anchor:
+    vi: 6-quyền-riêng-tư-và-pháp-lý
+    en: 6-privacy-and-legal
+
+- date: 2026-11-25
+  type: added
+  platforms: [app-store]
   vi: Thêm mục CallKit khi app bán ở Trung Quốc đại lục (bị từ chối theo guideline 5) vào phần pháp lý và các bẫy cần tránh
   en: Add the CallKit item for apps on sale in China mainland (rejected under guideline 5) to the legal section and the traps
   anchor:
