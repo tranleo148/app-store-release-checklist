@@ -23,16 +23,16 @@
     <li>
       <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">{{ entry.date | date: date_format }}</time>
       <span class="tag tag-{{ entry.type }}">{{ type_label }}</span>
+      <span class="platforms">
+        {%- assign pill_count = 0 -%}
+        {%- for item in site.checklists -%}
+          {%- unless platforms contains item.slug -%}{%- continue -%}{%- endunless -%}
+          {%- if pill_count > 0 -%}<span class="sep">/</span>{%- endif -%}
+          {%- assign pill_count = pill_count | plus: 1 -%}
+          {%- include checklist-icon.html slug=item.slug -%}{{ item.platform | default: item.name }}
+        {%- endfor -%}
+      </span>
       <span class="change">
-        <span class="platforms">
-          {%- assign pill_count = 0 -%}
-          {%- for item in site.checklists -%}
-            {%- unless platforms contains item.slug -%}{%- continue -%}{%- endunless -%}
-            {%- if pill_count > 0 -%}<span class="sep">/</span>{%- endif -%}
-            {%- assign pill_count = pill_count | plus: 1 -%}
-            {%- include checklist-icon.html slug=item.slug -%}{{ item.platform | default: item.name }}
-          {%- endfor -%}
-        </span>
         {{ text | markdownify | remove: '<p>' | remove: '</p>' | strip -}}
         {%- comment -%} A section link only makes sense when the entry is about one checklist. {%- endcomment -%}
         {%- if entry.anchor and entry.anchor[lang] and entry.platforms.size == 1 %}

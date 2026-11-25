@@ -16,7 +16,8 @@
     })();
   </script>
   {% seo %}
-  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  {%- comment -%} The commit id in the query makes browsers fetch the new CSS / JS after each publish. {%- endcomment %}
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.github.build_revision | slice: 0, 7 }}">
 </head>
 <body>
   <header class="site-header">
@@ -102,6 +103,6 @@
     <a href="https://github.com/{{ repo }}">{{ feedback_label }}</a>
   </footer>
 
-  <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.github.build_revision | slice: 0, 7 }}"></script>
 </body>
 </html>

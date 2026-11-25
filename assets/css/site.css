@@ -211,23 +211,34 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
 .recent-changes .changelog { margin: 0 0 8px; }
 .all-changes { display: inline-block; margin: 0 0 2px; }
 
-.changelog { list-style: none; padding-left: 0; }
-.changelog li {
+/* The list is the grid and each entry a subgrid row, so date, type, platforms and text sit in shared
+   columns: every type tag gets the width of the widest one and every text starts at the same place. */
+.changelog {
+  list-style: none;
+  padding-left: 0;
   display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr);
-  gap: 4px 10px;
+  grid-template-columns: auto auto auto minmax(0, 1fr);
+  gap: 6px 10px;
   align-items: baseline;
 }
-.changelog li + li { margin-top: 6px; }
+.changelog li {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  row-gap: 2px;
+  align-items: baseline;
+}
+.changelog li + li { margin-top: 0; }
 .changelog time { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .tag {
+  min-width: 4.5em;
   padding: 0 8px;
   border: 1px solid currentColor;
   border-radius: 2em;
   font-size: 12px;
   line-height: 1.6;
+  text-align: center;
   white-space: nowrap;
-  justify-self: start; /* keep its own width when the phone layout puts it in the wide column */
 }
 .tag-added { color: var(--green); }
 .tag-changed { color: var(--link); }
@@ -237,8 +248,8 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
 .platforms {
   display: inline-flex;
   align-items: center;
+  justify-self: start;
   gap: 4px;
-  margin-right: 6px;
   padding: 0 7px;
   border-radius: 6px;
   background: var(--code-bg);
@@ -251,8 +262,9 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
 .platforms svg { width: 12px; height: 12px; fill: currentColor; }
 .platforms .sep { margin: 0 2px; opacity: 0.6; }
 
+/* Phones: date, type and platforms on the first line, the text on its own line below */
 @media (max-width: 600px) {
-  .changelog li { grid-template-columns: auto minmax(0, 1fr); }
+  .changelog { grid-template-columns: auto auto minmax(0, 1fr); }
   .changelog .change { grid-column: 1 / -1; }
 }
 
