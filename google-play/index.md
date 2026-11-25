@@ -87,10 +87,28 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - [ ] [Console] Bộ câu hỏi content rating (IARC) đã trả lời.
 - [ ] [Console] Target audience and content: chọn đúng nhóm tuổi; nếu có trẻ em thì áp dụng Families policy.
 - [ ] [Console] Khai "Contains ads" đúng thực tế.
-- [ ] [Console] App access: nếu cần đăng nhập, cung cấp tài khoản và hướng dẫn cho reviewer.
-- [ ] `[if]` có tài khoản: xoá tài khoản ngay trong app và có link xoá trên web.
+- [ ] [Console] App access: nếu cần đăng nhập, cung cấp tài khoản và hướng dẫn cho reviewer. Tài khoản đăng nhập
+      được trên bản đã nộp và không hết hạn; backend luôn bật trong lúc review.
+- [ ] `[if]` có tài khoản: xoá tài khoản bằng cả hai đường:
+  - ngay trong app, dễ tìm;
+  - một trang web nơi người dùng yêu cầu xoá tài khoản và dữ liệu mà không phải cài lại app, khai trong form
+    Data safety. Reviewer mở trang này từ bên ngoài app;
+  - xoá là xoá thật: vô hiệu hoá hay tạm khoá tài khoản là không đủ. Có thêm lựa chọn chỉ xoá một phần dữ liệu
+    thì được.
 - [ ] `[if]` quyền nhạy cảm (thông báo, exact alarm, vị trí, ảnh/video, foreground service type): khai báo trong
       Console, có lý do rõ, chỉ hỏi quyền lúc cần.
+- [ ] [Code] Kiểm tra **merged manifest** (tab Merged Manifest trong Android Studio, hoặc `AndroidManifest.xml`
+      trong AAB bản release) xem có quyền nào do thư viện tự thêm, ví dụ `READ_MEDIA_IMAGES`, vị trí hay
+      `QUERY_ALL_PACKAGES`. Bỏ những quyền app không dùng bằng `tools:node="remove"`; quyền không khai báo sẽ bị
+      từ chối.
+- [ ] `[if]` ảnh / video: chỉ dùng `READ_MEDIA_IMAGES` / `READ_MEDIA_VIDEO` khi truy cập rộng thư viện ảnh là chức
+      năng chính của app (thư viện ảnh, app chỉnh sửa); còn lại dùng photo picker của hệ thống, không cần quyền.
+- [ ] [Console] `[if]` quyền bị hạn chế (SMS, call log, all files access, package visibility, vị trí nền...): form
+      Permissions Declaration, thường kèm video ngắn quay tính năng. Duyệt có thể mất vài tuần, nên nộp sớm.
+- [ ] `[if]` có nội dung do người dùng tạo (bài đăng, chat, hồ sơ, file tải lên): có cách báo cáo nội dung và chặn
+      người dùng, kèm kiểm duyệt.
+- [ ] App làm được nhiều hơn việc hiển thị một website, và không gần như trùng với một app khác trên Play, kể cả
+      app của chính bạn (chính sách spam và minimum functionality).
 - [ ] [Console] `[if]` các khai báo chính sách áp dụng: tài chính, tin tức, sức khoẻ, chính phủ, cờ bạc.
 - [ ] `[if]` IP của bên thứ ba (app không chính thức / fan app): dòng miễn trừ trong listing và trong app, không
       dùng thương hiệu người khác trong tên và icon.
@@ -112,14 +130,19 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
       developer notifications qua Pub/Sub, và **bật Google Play Android Developer API** trong Cloud project (thiếu
       API này thì bước kiểm tra credentials thất bại dù đã cấp đủ quyền).
 - [ ] [Console] Data safety có khai lịch sử mua hàng khi app bán hàng.
+- [ ] `[if]` có subscription: màn hình mua ghi rõ giá, chu kỳ thanh toán, người dùng nhận được gì và cách huỷ, rõ
+      ngang với chính nút mua (chính sách subscription của Play).
 - [ ] [Code] Các prompt tự hiện lúc mở app (cập nhật, consent, onboarding) chạy lần lượt từng cái, không chồng nhau.
 
 ## 8. Trang store
 
 - [ ] [Console] Tên app (tối đa 30 ký tự), mô tả ngắn (80), mô tả đầy đủ (4000), category, email liên hệ, website,
       URL privacy policy.
+- [ ] [Console] Chính sách metadata: tên, icon và mô tả ngắn không có chữ "best", "#1", "top", "free" hay giá,
+      không emoji, không VIẾT HOA toàn bộ, không lặp từ khoá; không dùng tên app hay thương hiệu khác; icon không
+      có huy hiệu xếp hạng hay nhãn "new".
 - [ ] [Console] Icon 512 × 512 px, feature graphic 1024 × 500 px, screenshot điện thoại; screenshot tablet nếu app
-      hỗ trợ tablet.
+      hỗ trợ tablet. Screenshot cho thấy app đang được dùng, không chỉ màn splash hay màn đăng nhập.
 - [ ] [Console] Listing theo ngôn ngữ cho các thị trường chính.
 - [ ] [Console] Release notes cho mọi ngôn ngữ đã có listing.
 
@@ -158,3 +181,8 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - **Billing backend báo sai credentials:** thiếu Google Play Android Developer API trong Cloud project, không phải
   thiếu quyền.
 - **Test mua hàng trên bản debug:** application id `.dev` không có sản phẩm; phải test trên bản ký release.
+- **Xoá tài khoản mà không có link web:** chỉ xoá được trong app là chưa đủ; Play còn cần một trang web, khai trong
+  form Data safety, nơi người dùng yêu cầu xoá mà không cần app.
+- **Quyền do thư viện thêm vào:** một dependency có thể đưa quyền nhạy cảm vào merged manifest; Play từ chối khi app
+  không dùng hoặc không khai báo quyền đó.
+- **Metadata:** chữ "best", "#1", emoji hay lặp từ khoá trong tên hoặc mô tả ngắn.

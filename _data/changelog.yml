@@ -24,6 +24,15 @@
 
 - date: 2026-11-25
   type: added
+  platforms: [google-play]
+  vi: Thêm các lý do bị từ chối hay gặp, xoá tài khoản chi tiết (trong app và link web), quyền do thư viện tự thêm, quyền ảnh/video, subscription, chính sách metadata
+  en: Add the most common rejection reasons, account deletion in detail (in the app and a web link), permissions added by libraries, photo and video permissions, subscriptions, the metadata policy
+  anchor:
+    vi: 6-quyền-riêng-tư-và-chính-sách
+    en: 6-privacy-and-policy
+
+- date: 2026-11-25
+  type: added
   platforms: [app-store]
   vi: Thêm các lý do bị từ chối hay gặp, xoá tài khoản chi tiết, đăng nhập theo guideline 4.8 hiện tại (Sign in with Apple hoặc cách tương đương), quyền, ATT, subscription, iPad, nhắc tên nền tảng khác
   en: Add the most common rejection reasons, account deletion in detail, sign-in under the current guideline 4.8 (Sign in with Apple or an equal option), permissions, ATT, subscriptions, iPad, mentions of other platforms

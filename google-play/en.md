@@ -89,10 +89,29 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - [ ] [Console] Target audience and content: the right age groups; if children are included, the Families policy
       applies.
 - [ ] [Console] "Contains ads" declared truthfully.
-- [ ] [Console] App access: if sign-in is needed, credentials and instructions for the reviewer.
-- [ ] `[if]` accounts: in-app account deletion plus a web deletion link.
+- [ ] [Console] App access: if sign-in is needed, credentials and instructions for the reviewer. The account works
+      on the submitted build and does not expire; the backend stays on during review.
+- [ ] `[if]` accounts: account deletion, both ways:
+  - inside the app, easy to find;
+  - a web page where people can ask to delete their account and its data without reinstalling the app, entered
+    in the Data safety form. Review opens it from outside the app;
+  - deleting means deleting: deactivating or freezing the account is not enough. An extra option to delete only
+    some data is fine on top.
 - [ ] `[if]` sensitive permissions (notifications, exact alarms, location, photos/videos, foreground service types):
       declared in the Console with a clear reason, requested only when needed.
+- [ ] [Code] Check the **merged manifest** (Android Studio's Merged Manifest tab, or the release build's
+      `AndroidManifest.xml` inside the AAB) for permissions a library added, e.g. `READ_MEDIA_IMAGES`, location or
+      `QUERY_ALL_PACKAGES`. Remove the ones the app does not use with `tools:node="remove"`; an undeclared one is
+      rejected.
+- [ ] `[if]` photos / videos: `READ_MEDIA_IMAGES` / `READ_MEDIA_VIDEO` only when broad media access is the app's
+      core purpose (a gallery, an editor); otherwise use the system photo picker, which needs no permission.
+- [ ] [Console] `[if]` restricted permissions (SMS, call log, all files access, package visibility, background
+      location...): the Permissions Declaration Form, often with a short video of the feature. Review can take
+      weeks, so file it early.
+- [ ] `[if]` user-generated content (posts, chat, profiles, uploads): a way to report content and block users, plus
+      moderation.
+- [ ] The app does more than show a website, and is not a near copy of another app on Play, yours included (spam and
+      minimum functionality policy).
 - [ ] [Console] `[if]` policy declarations that apply: financial features, news, health, government, gambling.
 - [ ] `[if]` third-party IP (unofficial / fan apps): disclaimer in the listing and in the app, no one else's
       trademarks in the name or icon.
@@ -114,14 +133,19 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
       Real-time developer notifications through Pub/Sub, and the **Google Play Android Developer API enabled** in
       the Cloud project (without it the credentials check fails even with every permission granted).
 - [ ] [Console] Data safety declares purchase history when the app sells anything.
+- [ ] `[if]` subscriptions: the purchase screen shows the price, the billing period, what the user gets and how to
+      cancel, as clearly as the button itself (Play subscriptions policy).
 - [ ] [Code] Prompts that open on their own at launch (update, consent, onboarding) run one at a time, never stacked.
 
 ## 8. Store listing
 
 - [ ] [Console] App name (up to 30 characters), short description (80), full description (4000), category,
       contact email, website, privacy policy URL.
+- [ ] [Console] Metadata policy: no "best", "#1", "top", "free" or price claims, no emoji, ALL CAPS or repeated
+      keywords in the name, icon or short description; no other apps' or brands' names; no ranking badges or
+      "new" labels on the icon.
 - [ ] [Console] Icon 512 × 512 px, feature graphic 1024 × 500 px, phone screenshots; tablet screenshots when the
-      app supports tablets.
+      app supports tablets. Screenshots show the app in use, not only the splash or sign-in screen.
 - [ ] [Console] Localized listings for the main markets.
 - [ ] [Console] Release notes for every listing language.
 
@@ -160,3 +184,8 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - **Billing backend reports bad credentials:** the Google Play Android Developer API was off in the Cloud project;
   permissions were fine.
 - **Testing purchases on a debug build:** the `.dev` application id has no products; test on a release-signed build.
+- **Account deletion with no web link:** deletion inside the app is not enough; Play also needs a web page, entered
+  in the Data safety form, where people can ask for deletion without the app.
+- **A permission a library added:** a dependency can put a sensitive permission into the merged manifest; Play
+  rejects it when the app does not use or declare it.
+- **Metadata:** "best", "#1", emoji or repeated keywords in the name or short description.
