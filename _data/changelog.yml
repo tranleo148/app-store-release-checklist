@@ -28,8 +28,8 @@
 
 - date: 2026-11-25
   type: changed
-  vi: Trang chủ giờ liệt kê các checklist; checklist App Store chuyển sang `/app-store/` (link cũ vẫn chuyển tiếp)
-  en: The home page now lists the checklists; the App Store checklist moved to `/app-store/` (old links still redirect)
+  vi: Thêm tab App Store / Google Play và nút chuyển VI / EN ở đầu mỗi trang (luôn hiện khi cuộn); checklist App Store chuyển sang `/app-store/`, link cũ vẫn mở đúng trang
+  en: Add App Store / Google Play tabs and a VI / EN switch at the top of every page (they stay while scrolling); the App Store checklist moved to `/app-store/`, old links still open it
 
 - date: 2026-11-24
   type: added

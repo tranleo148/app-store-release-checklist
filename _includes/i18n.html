@@ -1,15 +1,20 @@
 {%- comment -%}
-  Language and UI strings for the current page: English for every en.md and pages with lang: en,
+  Language, UI strings and URLs for the current page: English for every en.md and pages with lang: en,
   Vietnamese otherwise. Included by the layout and by changelog-list.html (page content is
   rendered before the layout, so the changelog pages need it on their own).
 {%- endcomment -%}
-{%- comment -%} The checklist this page belongs to (its folder), or "" for the home and changelog pages. {%- endcomment -%}
-{%- assign checklist = page.dir | remove: '/' -%}
-{%- unless site.checklists contains checklist -%}{%- assign checklist = "" -%}{%- endunless -%}
+{%- comment -%} The checklist this page belongs to (its folder), or "" for the changelog pages. {%- endcomment -%}
+{%- assign checklist = "" -%}
+{%- assign page_folder = page.dir | remove: '/' -%}
+{%- for item in site.checklists -%}
+  {%- if item.slug == page_folder -%}{%- assign checklist = item.slug -%}{%- endif -%}
+{%- endfor -%}
 {%- if page.lang == "en" or page.name == "en.md" -%}
   {%- assign lang = "en" -%}
   {%- assign download_label = "Download .md" -%}
   {%- assign theme_label = "Switch light or dark theme" -%}
+  {%- assign language_label = "Language" -%}
+  {%- assign tabs_label = "Checklists" -%}
   {%- assign credit_label = "Written by" -%}
   {%- assign feedback_label = "Feedback on GitHub" -%}
   {%- assign star_label = "Star on GitHub" -%}
@@ -18,12 +23,14 @@
   {%- assign latest_label = "Last updated" -%}
   {%- assign all_changes_label = "See all changes" -%}
   {%- assign date_format = "%b %-d, %Y" -%}
-  {%- assign home_url = '/en/' | relative_url -%}
+  {%- assign page_file = "en.html" -%}
   {%- assign changelog_url = '/changelog-en.html' | relative_url -%}
 {%- else -%}
   {%- assign lang = "vi" -%}
   {%- assign download_label = "Tải .md" -%}
   {%- assign theme_label = "Đổi giao diện sáng hoặc tối" -%}
+  {%- assign language_label = "Ngôn ngữ" -%}
+  {%- assign tabs_label = "Checklist" -%}
   {%- assign credit_label = "Biên soạn bởi" -%}
   {%- assign feedback_label = "Góp ý trên GitHub" -%}
   {%- assign star_label = "Gắn sao trên GitHub" -%}
@@ -32,6 +39,16 @@
   {%- assign latest_label = "Cập nhật gần nhất" -%}
   {%- assign all_changes_label = "Xem tất cả thay đổi" -%}
   {%- assign date_format = "%d/%m/%Y" -%}
-  {%- assign home_url = '/' | relative_url -%}
+  {%- assign page_file = "" -%}
   {%- assign changelog_url = '/changelog.html' | relative_url -%}
+{%- endif -%}
+{%- comment -%} Home = the first checklist, in this page's language. {%- endcomment -%}
+{%- assign home_url = '/' | append: site.checklists.first.slug | append: '/' | append: page_file | relative_url -%}
+{%- comment -%} The same page in Vietnamese and in English, for the language switch. {%- endcomment -%}
+{%- if checklist != "" -%}
+  {%- assign vi_url = '/' | append: checklist | append: '/' | relative_url -%}
+  {%- assign en_url = '/' | append: checklist | append: '/en.html' | relative_url -%}
+{%- else -%}
+  {%- assign vi_url = '/changelog.html' | relative_url -%}
+  {%- assign en_url = '/changelog-en.html' | relative_url -%}
 {%- endif -%}

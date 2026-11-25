@@ -1,7 +1,5 @@
 # Checklist release App Store (iOS)
 
-**Tiếng Việt** · [English](en.md)
-
 Checklist cho lần đầu đưa một app mobile lên App Store (app iOS native, hoặc app đa nền tảng như KMP,
 Flutter, React Native). Checklist được rút ra từ một bản release đã qua App Review.
 

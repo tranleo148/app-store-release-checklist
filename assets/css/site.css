@@ -63,18 +63,77 @@ a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* Toolbar */
+/* Header: toolbar and checklist tabs, kept at the top while scrolling */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
 .toolbar {
   max-width: 980px;
   margin: 0 auto;
-  padding: 16px 24px 12px;
+  padding: 12px 24px 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border-bottom: 1px solid var(--border);
 }
-.site-name { color: var(--muted); font-size: 14px; }
-.actions { display: flex; gap: 8px; }
+.site-name {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--muted);
+  font-size: 14px;
+}
+.actions { display: flex; gap: 8px; flex: none; }
+
+/* Language switch: VI | EN, the current one highlighted */
+.lang-switch {
+  display: inline-flex;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.lang-switch a {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.lang-switch a + a { border-left: 1px solid var(--border); }
+.lang-switch a:hover { background: var(--hover); text-decoration: none; }
+.lang-switch a[aria-current] { background: var(--hover); color: var(--fg); font-weight: 600; }
+
+/* Checklist tabs: links styled as tabs, the current page underlined */
+.tabs {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 24px;
+}
+.tabs a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 2px;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-size: 15px;
+}
+.tabs a:hover { color: var(--fg); text-decoration: none; }
+.tabs a[aria-current] { color: var(--fg); font-weight: 600; border-bottom-color: var(--link); }
+.tabs svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Section links land below the sticky header */
+.markdown-body [id] { scroll-margin-top: 110px; }
 .btn {
   display: inline-flex;
   align-items: center;
@@ -194,7 +253,9 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
 }
 
 @media (max-width: 600px) {
-  .toolbar, .markdown-body, .site-footer { padding-left: 16px; padding-right: 16px; }
+  .toolbar, .tabs, .markdown-body, .site-footer { padding-left: 16px; padding-right: 16px; }
+  /* Tabs share the width equally, easy to tap */
+  .tabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0; }
 }
 
 /* Narrow phones: buttons keep their icons only (their names stay in title and aria-label) */

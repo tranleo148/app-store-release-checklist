@@ -1,7 +1,5 @@
 # Google Play (Android) Release Checklist
 
-[Tiếng Việt](index.md) · **English**
-
 A checklist for a first Google Play release of an Android app (native, or a cross-platform app such as KMP,
 Flutter or React Native), built from the release checklist we use for apps live on Google Play.
 

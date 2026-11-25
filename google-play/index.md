@@ -1,7 +1,5 @@
 # Checklist release Google Play (Android)
 
-**Tiếng Việt** · [English](en.md)
-
 Checklist cho lần đầu đưa một app Android lên Google Play (app native, hoặc app đa nền tảng như KMP, Flutter,
 React Native). Checklist được rút ra từ checklist release chúng tôi dùng cho các app đang chạy trên Google Play.
 

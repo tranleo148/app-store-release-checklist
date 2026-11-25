@@ -19,11 +19,10 @@
       {%- when "removed" -%}{%- if lang == "en" -%}{%- assign type_label = "Removed" -%}{%- else -%}{%- assign type_label = "Bỏ" -%}{%- endif -%}
       {%- else -%}{%- assign type_label = entry.type -%}
     {%- endcase -%}
-    {%- case entry.checklist -%}
-      {%- when "app-store" -%}{%- assign checklist_name = "App Store" -%}
-      {%- when "google-play" -%}{%- assign checklist_name = "Google Play" -%}
-      {%- else -%}{%- assign checklist_name = "" -%}
-    {%- endcase -%}
+    {%- assign checklist_name = "" -%}
+    {%- for item in site.checklists -%}
+      {%- if item.slug == entry.checklist -%}{%- assign checklist_name = item.name -%}{%- endif -%}
+    {%- endfor -%}
     {%- assign text = entry[lang] | default: entry.en -%}
     <li>
       <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">{{ entry.date | date: date_format }}</time>
@@ -32,7 +31,6 @@
         {%- if checklist_name != "" and include.checklist == nil -%}<span class="muted">{{ checklist_name }}:</span> {% endif -%}
         {{- text | markdownify | remove: '<p>' | remove: '</p>' | strip -}}
         {%- if entry.anchor and entry.anchor[lang] and entry.checklist %}
-          {%- if lang == "en" -%}{%- assign page_file = "en.html" -%}{%- else -%}{%- assign page_file = "" -%}{%- endif %}
           <a href="{{ '/' | append: entry.checklist | append: '/' | append: page_file | relative_url }}#{{ entry.anchor[lang] }}">§{{ entry.anchor[lang] | split: '-' | first }}</a>
         {%- endif -%}
       </span>

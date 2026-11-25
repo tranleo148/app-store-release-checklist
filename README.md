@@ -2,7 +2,7 @@
 
 Checklists for a first store release of a mobile app, native or cross-platform, in Vietnamese and English.
 
-Read them on the site: https://tranleo148.github.io/app-store-release-checklist/
+Read them on the site: https://tranleo148.github.io/app-store-release-checklist/ (App Store and Google Play tabs, VI / EN switch at the top)
 
 | Checklist | Tiếng Việt | English |
 |---|---|---|

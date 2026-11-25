@@ -1,7 +1,5 @@
 # App Store (iOS) Release Checklist
 
-[Tiếng Việt](index.md) · **English**
-
 A checklist for a first App Store release of a mobile app (native iOS or a cross-platform app such as KMP,
 Flutter or React Native), built from a release that passed App Review.
 

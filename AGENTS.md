@@ -16,19 +16,22 @@ Public, shareable checklists for a first store release of a mobile app, publishe
 (Jekyll) at https://tranleo148.github.io/app-store-release-checklist/. The repo keeps its old name on
 purpose: renaming it would break the Pages URL already shared.
 
-- One folder per checklist, listed under `checklists` in `_config.yml`: `app-store/` (iOS) and
-  `google-play/` (Android). In each, `index.md` is Vietnamese and `en.md` English; keep the two in step, same
-  sections and items. The checklists and the home pages are the one place where content is in Vietnamese.
-- Home pages: `index.md` (Vietnamese, the site root) and `en/index.md` (English) link to every checklist; a
-  new checklist gets a line on both, a folder in `checklists`, and a name in `_includes/changelog-list.html`.
-- `en.html` at the root only redirects to `app-store/en.html` (where the English App Store checklist lived
-  before the split); keep it so old links work.
+- One folder per checklist, listed under `checklists` in `_config.yml` (slug + tab name, in tab order):
+  `app-store/` (iOS) and `google-play/` (Android). In each, `index.md` is Vietnamese and `en.md` English; keep
+  the two in step, same sections and items. The checklists are the one place where content is in Vietnamese.
+  The markdown holds no language links: the layout's VI / EN switch does that.
+- A new checklist: its folder, an entry in `checklists`, and an icon in `_includes/checklist-icon.html`; the
+  tabs, language switch, download name and changelog filter follow from the slug.
+- Redirect stubs, kept so shared links work: `index.html` (site root) → `app-store/`, `en/index.html` and
+  `en.html` → `app-store/en.html` (the App Store checklist lived at the root before the split).
 - Keep the checklist generic: no app, company, project or person names, no ids, keys, prices or dates.
 - `README.md`, `AGENTS.md`, `CLAUDE.md` and the license files are excluded from the site in `_config.yml`.
 - Licenses: the checklist content is CC BY 4.0 (`LICENSE`, official text, so GitHub detects it); the site
   code (layout, includes, CSS, JS) is MIT (`LICENSE-CODE`). Do not edit `LICENSE`.
-- `_layouts/default.html` wraps every page: toolbar (on checklist pages, download the page's `.md` from the raw file; a GitHub
-  link styled as a Star button, theme switch that follows the system until the reader picks one), footer
+- `_layouts/default.html` wraps every page: a sticky header with the toolbar (VI / EN switch to the same page
+  in the other language; on checklist pages, download the page's `.md` from the raw file; a GitHub link styled
+  as a Star button; theme switch that follows the system until the reader picks one) and the checklist tabs
+  (links with `aria-current` on the current one, none on the changelog pages), footer
   (author credit from `author` in `_config.yml`, CC BY 4.0 link, changelog, feedback). Styles in
   `assets/css/site.css`, scripts in `assets/js/site.js`.
 - UI strings for both languages live in `_includes/i18n.html`; a new English page sets `lang: en` in its
@@ -41,7 +44,8 @@ purpose: renaming it would break the Pages URL already shared.
   same commit: date, type (`added` / `changed` / `fixed` / `removed`), `checklist` (its folder; leave it out
   for site-wide changes), one line in `vi` and one in `en`, and an optional `anchor` (the changed section's
   heading id on each page).
-  Changes to the site only (layout, styles, scripts) get no entry.
+  Changes to the site only (layout, styles, scripts) get no entry, unless they change how readers reach a
+  checklist (URLs, navigation): those get a site-wide entry.
 - Each checklist page shows its 5 newest entries (plus site-wide ones) in the recent-changes box under its title
   (`_includes/changelog-list.html`, used by `_layouts/default.html`); `changelog.md` / `changelog-en.md`
   list them all.
