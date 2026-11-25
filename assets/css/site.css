@@ -264,7 +264,8 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
 
 /* Phones: date, type and platforms on the first line, the text on its own line below */
 @media (max-width: 600px) {
-  .changelog { grid-template-columns: auto auto minmax(0, 1fr); }
+  /* Each entry takes two lines here, so a wider gap keeps entries apart */
+  .changelog { grid-template-columns: auto auto minmax(0, 1fr); row-gap: 14px; }
   .changelog .change { grid-column: 1 / -1; }
 }
 
