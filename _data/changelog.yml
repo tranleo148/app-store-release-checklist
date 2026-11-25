@@ -1,19 +1,21 @@
-# Changes to the checklist content, newest first. Each checklist page shows its 5 newest entries
-# (plus site-wide ones) in the "recent changes" box; changelog.html / changelog-en.html list them all.
+# One changelog for every checklist, newest first. Every checklist page shows the same 5 newest entries
+# in the "recent changes" box; changelog.html / changelog-en.html list them all. Each entry starts with
+# a pill per platform it applies to (icon and `platform` from `checklists` in _config.yml).
 #
 # Fields:
-#   date    YYYY-MM-DD
-#   type    added | changed | fixed | removed
-#   checklist  optional: app-store | google-play (the folder); leave out for site-wide changes,
-#           which show on every checklist page
-#   vi, en  one line each (inline markdown allowed)
-#   anchor  optional: heading id of the changed section on each page, copied from the live page
-#           (e.g. 6-quyền-riêng-tư-và-pháp-lý / 6-privacy-and-legal); update it if the heading is renamed
+#   date       YYYY-MM-DD
+#   type       added | changed | fixed | removed
+#   platforms  optional: the checklists it applies to, by folder: [app-store], [google-play] or both;
+#              leave it out when it applies to every checklist (site-wide changes)
+#   vi, en     one line each (inline markdown allowed)
+#   anchor     optional, entries with one platform only: heading id of the changed section on that
+#              checklist's page in each language, copied from the live page
+#              (e.g. 6-quyền-riêng-tư-và-pháp-lý / 6-privacy-and-legal); update it if the heading is renamed
 #
 # Example:
 # - date: 2026-12-01
 #   type: added
-#   checklist: app-store
+#   platforms: [app-store]
 #   vi: Thêm bước App Compliance khi bán ở Trung Quốc đại lục
 #   en: Add the App Compliance step for China mainland
 #   anchor:
@@ -22,7 +24,7 @@
 
 - date: 2026-11-25
   type: added
-  checklist: app-store
+  platforms: [app-store]
   vi: Thêm mục CallKit khi app bán ở Trung Quốc đại lục (bị từ chối theo guideline 5) vào phần pháp lý và các bẫy cần tránh
   en: Add the CallKit item for apps on sale in China mainland (rejected under guideline 5) to the legal section and the traps
   anchor:
@@ -31,7 +33,7 @@
 
 - date: 2026-11-25
   type: added
-  checklist: google-play
+  platforms: [google-play]
   vi: Thêm checklist release Google Play (Android)
   en: Add the Google Play (Android) release checklist
 
@@ -42,6 +44,6 @@
 
 - date: 2026-11-24
   type: added
-  checklist: app-store
+  platforms: [app-store]
   vi: Phát hành checklist bản đầu, có tiếng Việt và tiếng Anh
   en: First release of the checklist, in Vietnamese and English

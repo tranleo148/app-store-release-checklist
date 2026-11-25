@@ -62,24 +62,19 @@
       {%- assign show_box = false -%}
     {%- endif -%}
     {%- unless content contains '</h1>' -%}{%- assign show_box = false -%}{%- endunless -%}
-    {%- comment -%} Newest entry of this checklist (or a site-wide one without a checklist). {%- endcomment -%}
-    {%- assign latest = nil -%}
-    {%- for entry in site.data.changelog -%}
-      {%- if entry.checklist == nil or entry.checklist == checklist -%}{%- assign latest = entry -%}{%- break -%}{%- endif -%}
-    {%- endfor -%}
-    {%- if latest == nil -%}{%- assign show_box = false -%}{%- endif -%}
     {%- if show_box == false %}
     {{ content }}
     {%- else %}
     {%- comment -%}
-      Checklist pages: the recent-changes box goes right under the title.
+      Checklist pages: the recent-changes box goes right under the title, always open. It shows the
+      same newest entries on every checklist (one changelog, each entry tagged with its platforms).
     {%- endcomment -%}
     {%- assign intro = content | split: '</h1>' | first | append: '</h1>' -%}
+    {%- assign latest = site.data.changelog | first -%}
     {%- assign latest_day = latest.date | date: '%Y-%m-%d' -%}
     {%- assign latest_count = 0 -%}
     {%- for entry in site.data.changelog -%}
       {%- assign day = entry.date | date: '%Y-%m-%d' -%}
-      {%- unless entry.checklist == nil or entry.checklist == checklist -%}{%- continue -%}{%- endunless -%}
       {%- if day == latest_day -%}{%- assign latest_count = latest_count | plus: 1 -%}{%- endif -%}
     {%- endfor -%}
     {%- if lang == "en" -%}
@@ -88,14 +83,14 @@
       {%- assign count_label = latest_count | append: " thay đổi" -%}
     {%- endif %}
     {{ intro }}
-    <details class="recent-changes">
-      <summary>
+    <section class="recent-changes" aria-labelledby="recent-changes-title">
+      <p class="recent-changes-title" id="recent-changes-title">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 2M3.05 11a9 9 0 1 1 .5 4M3 4v5h5"/></svg>
         {{ latest_label }} {{ latest.date | date: date_format }} <span class="muted">· {{ count_label }}</span>
-      </summary>
-      {% include changelog-list.html limit=5 checklist=checklist %}
+      </p>
+      {% include changelog-list.html limit=5 %}
       <a class="all-changes" href="{{ changelog_url }}">{{ all_changes_label }} →</a>
-    </details>
+    </section>
     {{ content | remove_first: intro }}
     {%- endif %}
   </main>

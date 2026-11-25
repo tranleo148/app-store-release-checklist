@@ -20,8 +20,9 @@ purpose: renaming it would break the Pages URL already shared.
   `app-store/` (iOS) and `google-play/` (Android). In each, `index.md` is Vietnamese and `en.md` English; keep
   the two in step, same sections and items. The checklists are the one place where content is in Vietnamese.
   The markdown holds no language links: the layout's VI / EN switch does that.
-- A new checklist: its folder, an entry in `checklists`, and an icon in `_includes/checklist-icon.html`; the
-  tabs, language switch, download name and changelog filter follow from the slug.
+- A new checklist: its folder, an entry in `checklists` (slug, tab `name`, `platform` for the changelog pill),
+  and an icon in `_includes/checklist-icon.html`; the tabs, language switch, download name and changelog pills
+  follow from the slug.
 - Redirect stubs, kept so shared links work: `index.html` (site root) → `app-store/`, `en/index.html` and
   `en.html` → `app-store/en.html` (the App Store checklist lived at the root before the split).
 - Keep the checklist generic: no app, company, project or person names, no ids, keys, prices or dates.
@@ -40,13 +41,15 @@ purpose: renaming it would break the Pages URL already shared.
 
 ### Changelog
 
-- Every commit that changes a checklist's content adds an entry at the top of `_data/changelog.yml` in the
-  same commit: date, type (`added` / `changed` / `fixed` / `removed`), `checklist` (its folder; leave it out
-  for site-wide changes), one line in `vi` and one in `en`, and an optional `anchor` (the changed section's
-  heading id on each page).
+- One changelog for every checklist. Every commit that changes a checklist's content adds an entry at the top
+  of `_data/changelog.yml` in the same commit: date, type (`added` / `changed` / `fixed` / `removed`),
+  `platforms` (the checklist folders it applies to, e.g. `[app-store]`; leave it out when it applies to all),
+  one line in `vi` and one in `en`, and an optional `anchor` (the changed section's heading id on each page,
+  only for entries with one platform).
   Changes to the site only (layout, styles, scripts) get no entry, unless they change how readers reach a
-  checklist (URLs, navigation): those get a site-wide entry.
-- Each checklist page shows its 5 newest entries (plus site-wide ones) in the recent-changes box under its title
+  checklist (URLs, navigation): those get an entry without `platforms`.
+- Each entry starts with a pill per platform (the checklist's icon and its `platform` name from `_config.yml`).
+  Every checklist page shows the same 5 newest entries in the recent-changes box under its title, always open
   (`_includes/changelog-list.html`, used by `_layouts/default.html`); `changelog.md` / `changelog-en.md`
   list them all.
 - Renaming a section heading changes its id: update the `anchor` values that point at it.

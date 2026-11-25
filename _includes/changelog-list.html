@@ -1,17 +1,16 @@
 {%- comment -%}
-  Changelog entries from _data/changelog.yml, newest first.
+  Changelog entries from _data/changelog.yml, newest first, one list for every checklist.
+  Each entry starts with a pill naming the platforms it applies to (every checklist when it has no
+  `platforms`), in the order of `checklists` in _config.yml.
   Params:
-    limit      optional: how many entries to show
-    checklist  optional: only entries of this checklist (plus site-wide entries without one)
+    limit  optional: how many entries to show
   Language strings come from i18n.html.
 {%- endcomment -%}
 {%- include i18n.html -%}
-{%- assign shown = 0 -%}
+{%- assign all_platforms = site.checklists | map: "slug" -%}
 <ul class="changelog">
   {%- for entry in site.data.changelog -%}
-    {%- if include.checklist and entry.checklist and entry.checklist != include.checklist -%}{%- continue -%}{%- endif -%}
-    {%- if include.limit and shown >= include.limit -%}{%- break -%}{%- endif -%}
-    {%- assign shown = shown | plus: 1 -%}
+    {%- if include.limit and forloop.index > include.limit -%}{%- break -%}{%- endif -%}
     {%- case entry.type -%}
       {%- when "added" -%}{%- if lang == "en" -%}{%- assign type_label = "Added" -%}{%- else -%}{%- assign type_label = "Thêm" -%}{%- endif -%}
       {%- when "changed" -%}{%- if lang == "en" -%}{%- assign type_label = "Changed" -%}{%- else -%}{%- assign type_label = "Sửa" -%}{%- endif -%}
@@ -19,19 +18,25 @@
       {%- when "removed" -%}{%- if lang == "en" -%}{%- assign type_label = "Removed" -%}{%- else -%}{%- assign type_label = "Bỏ" -%}{%- endif -%}
       {%- else -%}{%- assign type_label = entry.type -%}
     {%- endcase -%}
-    {%- assign checklist_name = "" -%}
-    {%- for item in site.checklists -%}
-      {%- if item.slug == entry.checklist -%}{%- assign checklist_name = item.name -%}{%- endif -%}
-    {%- endfor -%}
+    {%- assign platforms = entry.platforms | default: all_platforms -%}
     {%- assign text = entry[lang] | default: entry.en -%}
     <li>
       <time datetime="{{ entry.date | date: '%Y-%m-%d' }}">{{ entry.date | date: date_format }}</time>
       <span class="tag tag-{{ entry.type }}">{{ type_label }}</span>
       <span class="change">
-        {%- if checklist_name != "" and include.checklist == nil -%}<span class="muted">{{ checklist_name }}:</span> {% endif -%}
-        {{- text | markdownify | remove: '<p>' | remove: '</p>' | strip -}}
-        {%- if entry.anchor and entry.anchor[lang] and entry.checklist %}
-          <a href="{{ '/' | append: entry.checklist | append: '/' | append: page_file | relative_url }}#{{ entry.anchor[lang] }}">§{{ entry.anchor[lang] | split: '-' | first }}</a>
+        <span class="platforms">
+          {%- assign pill_count = 0 -%}
+          {%- for item in site.checklists -%}
+            {%- unless platforms contains item.slug -%}{%- continue -%}{%- endunless -%}
+            {%- if pill_count > 0 -%}<span class="sep">/</span>{%- endif -%}
+            {%- assign pill_count = pill_count | plus: 1 -%}
+            {%- include checklist-icon.html slug=item.slug -%}{{ item.platform | default: item.name }}
+          {%- endfor -%}
+        </span>
+        {{ text | markdownify | remove: '<p>' | remove: '</p>' | strip -}}
+        {%- comment -%} A section link only makes sense when the entry is about one checklist. {%- endcomment -%}
+        {%- if entry.anchor and entry.anchor[lang] and entry.platforms.size == 1 %}
+          <a href="{{ '/' | append: entry.platforms[0] | append: '/' | append: page_file | relative_url }}#{{ entry.anchor[lang] }}">§{{ entry.anchor[lang] | split: '-' | first }}</a>
         {%- endif -%}
       </span>
     </li>

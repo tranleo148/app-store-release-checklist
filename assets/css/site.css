@@ -194,10 +194,10 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
   border-radius: 6px;
   font-size: 14px;
 }
-.recent-changes summary { cursor: pointer; }
-.recent-changes summary svg,
-.recent-changes summary .muted { color: var(--muted); }
-.recent-changes summary svg {
+.markdown-body .recent-changes-title { margin: 0 0 8px; }
+.recent-changes-title svg,
+.recent-changes-title .muted { color: var(--muted); }
+.recent-changes-title svg {
   width: 15px;
   height: 15px;
   margin: 0 2px 0 4px;
@@ -208,7 +208,6 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.recent-changes[open] summary { margin-bottom: 8px; }
 .recent-changes .changelog { margin: 0 0 8px; }
 .all-changes { display: inline-block; margin: 0 0 2px; }
 
@@ -233,6 +232,23 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
 .tag-changed { color: var(--link); }
 .tag-fixed { color: var(--amber); }
 .tag-removed { color: var(--red); }
+/* Platform pill at the start of each entry: store icon + platform name, "/" between two platforms */
+.platforms {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+  padding: 0 7px;
+  border-radius: 6px;
+  background: var(--code-bg);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.platforms svg { width: 12px; height: 12px; fill: currentColor; }
+.platforms .sep { margin: 0 2px; opacity: 0.6; }
 
 @media (max-width: 600px) {
   .changelog li { grid-template-columns: auto minmax(0, 1fr); }
@@ -263,5 +279,3 @@ ul.task-list > li.task-list-item > .task-list-item-checkbox { margin-left: -1.6e
   .actions .btn span { display: none; }
   .actions .btn { padding: 0 8px; }
 }
-
-.changelog .muted { color: var(--muted); }
