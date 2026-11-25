@@ -22,6 +22,8 @@ A public, shareable checklist for a first App Store (iOS) release, published wit
 - `_layouts/default.html` wraps both pages: toolbar (download the page's `.md` from the raw file, theme
   switch that follows the system until the reader picks one), footer credit and copyright (`author` and
   `copyright_year` in `_config.yml`). Styles in `assets/css/site.css`, scripts in `assets/js/site.js`.
+- UI strings for both languages live in `_includes/i18n.html`; a new English page sets `lang: en` in its
+  front matter.
 - No build step: pushing `main` publishes the site.
 
 ### Changelog

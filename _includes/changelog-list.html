@@ -1,8 +1,9 @@
 {%- comment -%}
   Changelog entries from _data/changelog.yml, newest first.
   Params: limit (optional) = how many entries to show.
-  Uses lang, date_format and home_url assigned by the layout.
+  Language strings come from i18n.html.
 {%- endcomment -%}
+{%- include i18n.html -%}
 {%- assign entries = site.data.changelog -%}
 {%- if include.limit -%}
   {%- assign entries = entries | slice: 0, include.limit -%}
