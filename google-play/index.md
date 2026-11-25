@@ -53,8 +53,8 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - [ ] [Device] Dark mode, cỡ chữ lớn, màn nhỏ và màn lớn (tablet / foldable không vỡ layout).
 - [ ] [Device] `[if]` máy không có Google Play services: app vẫn mở được (các lời gọi Firebase / ads có bảo vệ).
 - [ ] [Device] `[if]` nhiều ngôn ngữ: không có chuỗi bị cắt hay chưa dịch.
-- [ ] [Console] Đọc **Pre-launch report** mà Play tự chạy trên bản upload lên track test (crash, accessibility,
-      cảnh báo bảo mật).
+- [ ] [Console] Đọc **Pre-launch report** mà Play tự chạy mỗi khi upload một bản, kể cả bản test (độ ổn định,
+      tương thích, hiệu năng, accessibility).
 - [ ] [Device] `[if]` thay thế một app cũ trên cùng listing: cài bản store cũ, cập nhật lên bản mới qua Play
       (internal track), app mở được, dữ liệu cũ được chuyển hoặc bỏ có chủ đích.
 
@@ -131,8 +131,9 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
        tay ở mục 3.
 3. [ ] [Console] `[if]` tài khoản cá nhân mới: closed test đủ tester và đủ số ngày (mục 1), rồi gửi yêu cầu mở
        production.
-4. [ ] [Console] Trang Publishing overview không còn mục nào báo thiếu (Data safety, content rating, target
-       audience, ads, app access...). Bật **Managed publishing** nếu muốn tự chọn thời điểm lên sau khi được duyệt.
+4. [ ] [Console] Dashboard và **Policy → App content** không còn mục nào báo thiếu (Data safety, content rating,
+       target audience, ads, app access...). Trên trang **Publishing overview**, gửi các thay đổi đi review; bật
+       **Managed publishing** ở đó nếu muốn tự chọn thời điểm lên sau khi được duyệt.
 5. [ ] [Console] Promote lên **production** với staged rollout (ví dụ 10% → 50% → 100%) cho các bản cập nhật. Bản
        đầu của app mới có thể bị review lâu vài ngày.
 
@@ -153,4 +154,3 @@ Tên vendor bên dưới (Firebase, AdMob/UMP, RevenueCat) chỉ là ví dụ c�
 - **Billing backend báo sai credentials:** thiếu Google Play Android Developer API trong Cloud project, không phải
   thiếu quyền.
 - **Test mua hàng trên bản debug:** application id `.dev` không có sản phẩm; phải test trên bản ký release.
-- **Closed test 14 ngày:** tài khoản cá nhân mới không thể lên production ngay; tính thời gian này vào kế hoạch.

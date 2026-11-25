@@ -54,8 +54,8 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - [ ] [Device] Dark mode, large font scale, small and large screens (tablet / foldable layout holds).
 - [ ] [Device] `[if]` devices without Google Play services: the app still starts (Firebase / ads calls guarded).
 - [ ] [Device] `[if]` several languages: no truncated or untranslated strings.
-- [ ] [Console] Read the **Pre-launch report** Play runs on builds uploaded to a testing track (crashes,
-      accessibility, security warnings).
+- [ ] [Console] Read the **Pre-launch report** Play runs on every uploaded build, test builds included
+      (stability, compatibility, performance, accessibility).
 - [ ] [Device] `[if]` replacing an older app on the same listing: install the old store build, update to the new
       one through Play (internal track), the app starts, old data migrated or dropped on purpose.
 
@@ -133,8 +133,9 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
        by-hand checks of section 3.
 3. [ ] [Console] `[if]` new personal account: the closed test with enough testers for enough days (section 1),
        then apply for production access.
-4. [ ] [Console] Publishing overview shows nothing missing (Data safety, content rating, target audience, ads,
-       app access...). Turn on **Managed publishing** to choose when an approved release goes live.
+4. [ ] [Console] Dashboard and **Policy → App content** show nothing missing (Data safety, content rating,
+       target audience, ads, app access...). On **Publishing overview**, send the changes for review; turn on
+       **Managed publishing** there to choose when an approved release goes live.
 5. [ ] [Console] Promote to **production** with a staged rollout (e.g. 10% → 50% → 100%) for updates. A new
        app's first review can take several days.
 
@@ -155,4 +156,3 @@ Vendor names below (Firebase, AdMob/UMP, RevenueCat) are examples of the usual s
 - **Billing backend reports bad credentials:** the Google Play Android Developer API was off in the Cloud project;
   permissions were fine.
 - **Testing purchases on a debug build:** the `.dev` application id has no products; test on a release-signed build.
-- **The 14-day closed test:** a new personal account cannot go to production right away; plan for that time.
